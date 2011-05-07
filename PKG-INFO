@@ -1,0 +1,15 @@
+| Variable byte codes.
+| Compression algorithm for integers.
+| (http://nlp.stanford.edu/IR-book/html/htmledition/variable-byte-codes-1.html)
+
+Usage
+=====
+
+Encoding:
+
+  import vbcode
+  bytestream = vbcode.encode([1,2,3,4,5])
+  
+Decoding:
+
+  vbcode.decode(bytestream)
