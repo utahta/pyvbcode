@@ -14,6 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #---------------------------------------------------------------------------
+from __future__ import division 
 from struct import pack, unpack
 
 def encode_number(number):
@@ -22,14 +23,14 @@ def encode_number(number):
       import vbcode
       vbcode.encode_number(128)
     """
-    bytes = []
+    bytes_list = []
     while True:
-        bytes.insert(0, number % 128)
+        bytes_list.insert(0, number % 128)
         if number < 128:
             break
-        number /= 128
-    bytes[-1] += 128
-    return pack('%dB' % len(bytes), *bytes)
+        number = number // 128
+    bytes_list[-1] += 128
+    return pack('%dB' % len(bytes_list), *bytes_list)
 
 def encode(numbers):
     """Variable byte code encode numbers.
@@ -37,10 +38,10 @@ def encode(numbers):
       import vbcode
       vbcode.encode([32, 64, 128])
     """
-    bytes = []
+    bytes_list = []
     for number in numbers:
-        bytes.append(encode_number(number))
-    return ''.join(bytes)
+        bytes_list.append(encode_number(number))
+    return b"".join(bytes_list)
 
 def decode(bytestream):
     """Variable byte code decode.
