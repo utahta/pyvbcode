@@ -38,5 +38,3 @@ def test_vbc():
         print("test ok. %s -> %s" % (n, n))
 
     test_vb_decode()
-
-test_vbc()
